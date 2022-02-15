@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+bool _isObscure = true;
 
 Widget defaultFormField({
   required TextEditingController controller,
@@ -40,7 +41,7 @@ Widget defaultFormField({
           ),
         )
             : null,
-        border: OutlineInputBorder(),
+        border: const OutlineInputBorder(),
       ),
     );
 

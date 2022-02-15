@@ -9,6 +9,8 @@ import '../../../shared/Component/component.dart';
 
 class ShopLoginScreen extends StatelessWidget{
 
+
+
   var formKey=GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
@@ -37,13 +39,9 @@ class ShopLoginScreen extends StatelessWidget{
                    defaultFormField(
                      controller: emailController,
                      type: TextInputType.emailAddress,
-                     validate: (value)
-                     {
-                       if(value!.isEmpty)
-                       {
-                         return 'please enter your Email address';
-                       }
-                     },
+                    validate: (value) {
+                          if (value!.isEmpty) {
+                          return 'email mustn\'t be empty';}},
                      label: 'Email Address',
                      prefix: Icons.email_outlined,
                    ),
@@ -64,11 +62,15 @@ class ShopLoginScreen extends StatelessWidget{
                      },
                      validate: (value) {
                        if (value!.isEmpty) {
-                         return 'password is too short';
+                         return 'password mustn\'t be empty';
                        }
                      },
                      label: 'Password',
                      prefix: Icons.lock_outline,
+                     suffix: Icons.remove_red_eye_sharp,
+                     suffixPressed: ()
+                     {
+                     },
                    ),
                    const SizedBox(
                      height: 30.0,

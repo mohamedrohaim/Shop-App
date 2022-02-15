@@ -1,9 +1,16 @@
+import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:test1/shared/style/bloc_observer.dart';
 import 'package:test1/shared/themes.dart';
 import 'modules/shop_app/on_boarding_screen.dart';
 
 void main() {
-  runApp(MyApp());
+  BlocOverrides.runZoned(
+        () {
+          runApp(MyApp());
+    },
+    blocObserver: MyBlocObserver(),
+  );
 
 }
 class MyApp extends StatelessWidget

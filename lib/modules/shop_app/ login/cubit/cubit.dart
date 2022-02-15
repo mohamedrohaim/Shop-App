@@ -8,6 +8,7 @@ import '../../../../shared/network/end_point.dart';
 
 class ShopLoginCubit extends Cubit<ShopLoginStates>
  {
+
    ShopLoginCubit(): super(ShopLoginInitialState());
    static ShopLoginCubit get(context)=>BlocProvider.of(context);
 
@@ -25,6 +26,9 @@ class ShopLoginCubit extends Cubit<ShopLoginStates>
        }
        emit(ShopLoginSuccessState());
      }).catchError((error){
+       if (kDebugMode) {
+         print(error.toString());
+       }
        emit(ShopLoginErrorState(error.toString()));
      });
 
