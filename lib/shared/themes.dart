@@ -39,6 +39,7 @@ import 'colors.dart';
          primarySwatch: defaultColor,
          scaffoldBackgroundColor: Colors.white,
          appBarTheme:  const AppBarTheme(
+
          titleSpacing: 20.0,
          iconTheme: IconThemeData(color: Colors.black,),
          backwardsCompatibility: false,

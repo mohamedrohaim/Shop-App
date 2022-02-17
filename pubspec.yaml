@@ -39,6 +39,7 @@ dependencies:
   dio: ^4.0.4
   shared_preferences: ^2.0.13
   conditional_builder_null_safety: ^0.0.6
+  color: ^3.0.0
 
 
 
@@ -74,6 +75,7 @@ flutter:
     - assets/images/image1.png
     - assets/images/image2.png
     - assets/images/image3.png
+    - assets/images/login.jpg
 
   fonts:
     - family:

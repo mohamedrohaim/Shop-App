@@ -1,10 +1,13 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:test1/shared/network/remote/dio_helper.dart';
 import 'package:test1/shared/style/bloc_observer.dart';
 import 'package:test1/shared/themes.dart';
 import 'modules/shop_app/on_boarding_screen.dart';
 
 void main() {
+  DioHelper.init();
+
   BlocOverrides.runZoned(
         () {
           runApp(MyApp());

@@ -9,6 +9,6 @@ class ShopLoginSuccessState extends ShopLoginStates{}
 class ShopLoginErrorState extends ShopLoginStates
 {
   late final String error;
-
   ShopLoginErrorState(String error);
 }
+class ShopLChangePasswordVisibilityState extends ShopLoginStates{}

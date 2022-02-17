@@ -6,6 +6,7 @@ import 'package:test1/modules/shop_app/%20login/cubit/states.dart';
 import 'package:test1/modules/shop_app/register/shop_register_screen.dart';
 
 import '../../../shared/Component/component.dart';
+import '../../../shared/colors.dart';
 
 class ShopLoginScreen extends StatelessWidget{
 
@@ -23,18 +24,25 @@ class ShopLoginScreen extends StatelessWidget{
        listener: (context,state){},
        builder: (context,state){
          return Scaffold(
-           appBar: AppBar(),
+          appBar: AppBar(
+            title: Text(
+              'LOGIN',style: Theme.of(context).textTheme.headline4!.copyWith(color: defaultColor),),
+          ),
            body: Center(
              child: SingleChildScrollView(
+               physics: const BouncingScrollPhysics(),
                child: Padding(
                  padding: const EdgeInsets.all(20.0),
                  child: Form(
+
                    key: formKey,
                    child: Column(
                      crossAxisAlignment: CrossAxisAlignment.start,
                      children:  [
-                       Text('LOGIN',style: Theme.of(context).textTheme.headline4!.copyWith(color: Colors.black),),
-                       Text('Login now to browse our hot offers',style: Theme.of(context).textTheme.bodyText1!.copyWith(color:Colors.grey, ),),
+                       Container(
+                           width: 500.0,
+                           height: 300.0,
+                           child: Image.asset('assets/images/login.jpg',)),
                        const SizedBox(height: 30.0,),
                    defaultFormField(
                      controller: emailController,
@@ -50,6 +58,7 @@ class ShopLoginScreen extends StatelessWidget{
                    ),
                    defaultFormField(
                      controller: passwordController,
+                     isPassword: ShopLoginCubit.get(context).isPassword,
                      type: TextInputType.visiblePassword,
                      onSubmit: (value) {
                        if (formKey.currentState!.validate()) {
@@ -64,12 +73,15 @@ class ShopLoginScreen extends StatelessWidget{
                        if (value!.isEmpty) {
                          return 'password mustn\'t be empty';
                        }
+                       return null;
                      },
                      label: 'Password',
                      prefix: Icons.lock_outline,
-                     suffix: Icons.remove_red_eye_sharp,
+                     suffix: ShopLoginCubit.get(context).suffix,
                      suffixPressed: ()
+
                      {
+                       ShopLoginCubit.get(context).changePasswordVisibility();
                      },
                    ),
                    const SizedBox(

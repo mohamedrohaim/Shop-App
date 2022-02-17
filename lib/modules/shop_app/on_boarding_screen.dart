@@ -46,7 +46,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
           TextButton(onPressed: ()
           {
             navigateAndFinish(context, ShopLoginScreen());
-          }, child: Text('skip',),),
+          }, child: const Text('skip',),),
 
         ],
 

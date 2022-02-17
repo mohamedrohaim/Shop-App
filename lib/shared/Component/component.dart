@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:test1/shared/colors.dart';
 
-bool _isObscure = true;
 
 Widget defaultFormField({
   required TextEditingController controller,
@@ -17,6 +17,7 @@ Widget defaultFormField({
   bool isClickable = true,
 }) =>
     TextFormField(
+      style: const TextStyle(color: Colors.purple),
       controller: controller,
       keyboardType: type,
       obscureText: isPassword,
@@ -26,6 +27,11 @@ Widget defaultFormField({
       onTap: onTap != null? onTap() : null,
       validator: validate,
       decoration: InputDecoration(
+          border:  OutlineInputBorder(
+        borderRadius:  BorderRadius.circular(25.0),
+      gapPadding: 10.0,
+      ),
+
         labelText: label,
         prefixIcon: Icon(
           prefix,
@@ -41,13 +47,12 @@ Widget defaultFormField({
           ),
         )
             : null,
-        border: const OutlineInputBorder(),
       ),
     );
 
 Widget defaultButton({
   double width = double.infinity,
-  Color background = Colors.blue,
+  Color background = defaultColor,
   bool isUpperCase = true,
   double radius = 3.0,
   required Function function,
