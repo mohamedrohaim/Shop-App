@@ -5,10 +5,12 @@ class FavoritesScreen extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
 
-    return Text(
-        'Favorites screen',
-      style: Theme.of(context).textTheme.bodyText1,
+    return Center(
+      child: Text(
+          'Favorites screen',
+        style: Theme.of(context).textTheme.bodyText1,
 
+      ),
     );
   }
 }

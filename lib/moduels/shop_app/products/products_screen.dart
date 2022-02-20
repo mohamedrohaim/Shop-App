@@ -5,10 +5,12 @@ class productsScreen extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
 
-    return Text(
-        'products screen',
-      style: Theme.of(context).textTheme.bodyText1,
+    return Center(
+      child: Text(
+          'products screen',
+        style: Theme.of(context).textTheme.bodyText1,
 
+      ),
     );
   }
 }

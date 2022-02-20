@@ -23,7 +23,7 @@ ThemeData darkTheme=  ThemeData(primarySwatch: defaultColor,scaffoldBackgroundCo
       ),
     ),bottomNavigationBarTheme:  const BottomNavigationBarThemeData(
       type:  BottomNavigationBarType.fixed,
-      selectedItemColor: defaultColor,
+      selectedItemColor: Colors.red,
       unselectedItemColor: Colors.white,
       elevation: 20.0,
       backgroundColor: Colors.black12,
@@ -55,7 +55,7 @@ ThemeData lightTheme=ThemeData(
       ),
     ), bottomNavigationBarTheme: const BottomNavigationBarThemeData(
   type:  BottomNavigationBarType.fixed,
-  selectedItemColor: defaultColor,
+  selectedItemColor: Colors.blue,
   unselectedItemColor: Colors.black,
   elevation: 20.0,
   backgroundColor: Colors.white,
