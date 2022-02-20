@@ -23,8 +23,18 @@ class CacheHelper
     return await sharedPreferences!.setDouble(key!, value);
 
   }
-  static dynamic getData({ String? key})
-  {
-    return sharedPreferences?.getBool(key!);
+  static dynamic getData({
+    required String key,
+  }) {
+    return sharedPreferences!.get(key);
   }
+  static dynamic DeleteData({
+    required String key,
+  }){
+
+    return sharedPreferences!.remove(key);
+
+  }
+
+
 }

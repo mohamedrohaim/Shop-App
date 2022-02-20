@@ -6,6 +6,7 @@ import 'package:test1/shared/network/remote/dio_helper.dart';
 import 'package:test1/shared/style/theme.dart';
 import 'moduels/login_screen/login_screen.dart';
 import 'moduels/on_boarding_screen/on_boarding.dart';
+import 'moduels/shop_app/shop_layout_screen.dart';
 
 // void main() {
 //   runApp(const MyApp());
@@ -16,17 +17,37 @@ void main()async {
         ()async {
           DioHelper.init();
          await CacheHelper.init();
-          dynamic onBoarding=CacheHelper.getData(key: 'onBoarding');
+
+         Widget widget;
+           bool? onBoarding=CacheHelper.getData(key: 'onBoarding') ;
+          Object? token=CacheHelper.getData(key: 'token');
+
+          if(onBoarding!=null)
+          {
+            if(token!=null)
+            {
+              widget=ShopLayout();
+            }
+            else
+            {
+              widget=ShopLoginScreen();
+            }
+          }else
+          {
+            widget=OnBoardingScreen();
+          }
+
           print(onBoarding);
-     runApp( MyApp(onBoarding:onBoarding ,));
+     runApp( MyApp(startWidget:widget ,));
     },
     blocObserver: MyBlocObserver(),
   );
 }
 
 class MyApp extends StatelessWidget {
-  const   MyApp({Key? key,this.onBoarding }) : super(key: key);
-final onBoarding;
+  const   MyApp({this.onBoarding,this.startWidget });
+final  onBoarding;
+final Widget? startWidget;
 
   // This widget is the root of your application.
   @override
@@ -36,7 +57,7 @@ final onBoarding;
       theme: lightTheme,
       darkTheme: darkTheme,
       themeMode: ThemeMode.light,
-      home: onBoarding==true?ShopLoginScreen():const OnBoardingScreen(),
+      home: startWidget,
     );
   }
 }
