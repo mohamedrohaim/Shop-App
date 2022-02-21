@@ -1,4 +1,3 @@
-import 'dart:html';
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
@@ -8,6 +7,7 @@ import 'package:test1/moduels/shop_app/cubit/states.dart';
 import 'package:test1/moduels/shop_app/favortites/favorites_screen.dart';
 import 'package:test1/moduels/shop_app/settings/settings_screen.dart';
 import 'package:test1/shared/network/remote/dio_helper.dart';
+import '../../../shared/constant.dart';
 import '../../../shared/network/endpoints.dart';
 import '../categories/categories_screen.dart';
 import '../products/products_screen.dart';
@@ -35,9 +35,14 @@ class ShopCubit extends Cubit<ShopStates>{
   void  getHomeData ()
     {
       emit(ShopLoadingHomeDataState());
-      DioHelper.getData(url: HOME).then((value) {
+      DioHelper.getData(
+          url: HOME,
+        token:token,
+
+
+      ).then((value) {
         homeModel=HomeModel.fromJson(value.data);
-        print(homeModel.toString());
+        printFullText(homeModel!.data!.products[0].image!);
        emit(ShopSuccessHomeDataState());
       }).catchError((error){
         print(error.toString());

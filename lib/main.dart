@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test1/moduels/shop_app/cubit/states.dart';
 import 'package:test1/shared/bloc_observer.dart';
+import 'package:test1/shared/constant.dart';
 import 'package:test1/shared/network/local/shared_prefrences.dart';
 import 'package:test1/shared/network/remote/dio_helper.dart';
 import 'package:test1/shared/style/theme.dart';
@@ -23,7 +24,7 @@ void main()async {
 
          Widget widget;
            bool? onBoarding=CacheHelper.getData(key: 'onBoarding') ;
-          Object? token=CacheHelper.getData(key: 'token');
+          token=CacheHelper.getData(key: 'token');
 
           if(onBoarding!=null)
           {

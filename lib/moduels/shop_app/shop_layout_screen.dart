@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:test1/moduels/login_screen/login_screen.dart';
 import 'package:test1/moduels/shop_app/cubit/cubit.dart';
 import 'package:test1/moduels/shop_app/cubit/states.dart';
 import 'package:test1/moduels/shop_app/search/search_screen.dart';
 import 'package:test1/shared/component.dart';
-import 'package:test1/shared/network/local/shared_prefrences.dart';
 
-import '../../shared/constant.dart';
 
 class ShopLayout extends StatelessWidget{
   @override
@@ -20,7 +17,7 @@ class ShopLayout extends StatelessWidget{
 
         return Scaffold(
           appBar: AppBar(
-            title: Text('shop layout'),
+            title: const Text('shop layout'),
             actions: [
               IconButton(onPressed: (){
                 navigateTo(context, SearchScreen());
