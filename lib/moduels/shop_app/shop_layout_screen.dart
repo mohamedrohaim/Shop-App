@@ -5,6 +5,8 @@ import 'package:test1/moduels/shop_app/cubit/states.dart';
 import 'package:test1/moduels/shop_app/search/search_screen.dart';
 import 'package:test1/shared/component.dart';
 
+import '../../shared/constant.dart';
+
 
 class ShopLayout extends StatelessWidget{
   @override
@@ -17,11 +19,19 @@ class ShopLayout extends StatelessWidget{
 
         return Scaffold(
           appBar: AppBar(
-            title: const Text('shop layout'),
+            title: const Text('XMR SHOP'),
             actions: [
               IconButton(onPressed: (){
                 navigateTo(context, SearchScreen());
-              }, icon: const Icon(Icons.search))
+              }, icon: const Icon(Icons.search)),
+              IconButton(onPressed: (){
+                sinOut(context);
+              }, icon: const Icon(Icons.logout,size: 20.0,)),
+              IconButton(onPressed: (){
+                reset(context);
+              }, icon: const Icon(Icons.reset_tv,size: 20.0,)),
+
+
             ],
           ),
           body: cubit.bottomScreens[cubit.currentIndex],
