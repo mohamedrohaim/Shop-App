@@ -57,7 +57,7 @@ final Widget? startWidget;
   @override
   Widget build(BuildContext context) {
     return  BlocProvider(
-      create: (context)=>ShopCubit()..getHomeData()..getCategories(),
+      create: (context)=>ShopCubit()..getCategories()..getHomeData(),
       child: BlocConsumer<ShopCubit,ShopStates>(
         listener: (context, state) {},
       builder: (context,state){

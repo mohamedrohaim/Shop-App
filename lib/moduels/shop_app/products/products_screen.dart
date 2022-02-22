@@ -21,7 +21,7 @@ class productsScreen extends StatelessWidget{
       builder: (context,state){
         
         return ConditionalBuilder(
-            condition: ShopCubit.get(context).homeModel!=null ,
+            condition: ShopCubit.get(context).homeModel!=null && ShopCubit.get(context).categoriesModel!=null,
             builder:(context)=> productsBuilder(ShopCubit.get(context).homeModel!,ShopCubit.get(context).categoriesModel!) ,
           fallback: (context)=>const Center(child: CircularProgressIndicator()),
 
@@ -31,10 +31,8 @@ class productsScreen extends StatelessWidget{
     ) ;
    
   }
-
-
   Widget productsBuilder(HomeModel model,CategoriesModel categoriesModel)=>SingleChildScrollView(
-    physics:  BouncingScrollPhysics(),
+    physics:  const BouncingScrollPhysics(),
     scrollDirection: Axis.vertical,
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -111,7 +109,7 @@ class productsScreen extends StatelessWidget{
   Widget buildCategoryItem(DataModel model)=>Stack(
     alignment: AlignmentDirectional.bottomCenter,
     children:  [
-      const Image(image: NetworkImage('https://student.valuxapps.com/storage/uploads/categories/1644527120pTGA7.clothes.png'),
+       Image(image: NetworkImage('${model.image}'),
         height: 100.0,
         width: 100.0,
         fit: BoxFit.cover,
@@ -119,7 +117,7 @@ class productsScreen extends StatelessWidget{
       Container(
           color: Colors.black.withOpacity(0.8),
           width: 100.0,
-          child:  Text(
+          child:   Text(
             '${model.name}',
             maxLines: 1,
             overflow: TextOverflow.ellipsis,

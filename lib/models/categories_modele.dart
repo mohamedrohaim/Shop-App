@@ -21,12 +21,10 @@ late List<DataModel>data=
 CategoriesDataModel.fromJson(Map<String,dynamic>json)
 {
   currentPage=json['current_page'];
-  data=json['data'].forEach((element)=>
-      data.add(DataModel.fromJson({
-        'name':element['name'],
-        'id':element['id'],
-        'image':element['image'],
-      })));
+  json['data'].forEach((element)
+  {
+    data.add(DataModel.fromJson(element));
+});
 }
 }
 class DataModel
