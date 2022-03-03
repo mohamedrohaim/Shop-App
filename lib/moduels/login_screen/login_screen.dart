@@ -2,7 +2,6 @@ import 'package:conditional_builder_null_safety/conditional_builder_null_safety.
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:test1/shared/network/local/shared_prefrences.dart';
 import '../../shared/component.dart';
 import '../../shared/constant.dart';
@@ -12,7 +11,6 @@ import 'cubit/login_cubit.dart';
 import 'cubit/login_states.dart';
 
 class ShopLoginScreen extends StatelessWidget {
-   ShopLoginScreen({Key? key}) : super(key: key);
 var emailController=TextEditingController();
 var passController=TextEditingController();
 var formKey=GlobalKey<FormState>();
@@ -25,11 +23,9 @@ var formKey=GlobalKey<FormState>();
         {
           if(state is ShopLoginSuccessState)
             {
-              if(state.loginModel!.status)
+              if(state.loginModel!.status!)
                 {
-                  print(state.loginModel!.data!.token);
-                  print(state.loginModel!.message);
-                  showToast(states: ToastStates.SUCCESS, text:state.loginModel!.message);
+                  showToast(states: ToastStates.SUCCESS, text:state.loginModel!.message!, );
                   CacheHelper.saveData(key: 'token',value: state.loginModel!.data!.token,).then(
                           (value) {
                             navigateAndFinished(context, ShopLayout());
@@ -39,7 +35,7 @@ var formKey=GlobalKey<FormState>();
               else
                 {
                   print(state.loginModel!.message);
-                  showToast(states: ToastStates.ERROR, text:state.loginModel!.message);
+                  showToast(states: ToastStates.ERROR, text:state.loginModel!.message!,);
                 }
             }
 
@@ -59,7 +55,7 @@ var formKey=GlobalKey<FormState>();
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children:  [
-                      Image.asset('assets/images/login.jpg'),
+                      Image.asset('assets/images/login.png'),
                       const SizedBox(
                         height: 30,
                       ),
@@ -137,7 +133,7 @@ var formKey=GlobalKey<FormState>();
                           const Text('Don\'t have an account '),
                           const Spacer(),
                           TextButton(onPressed: (){
-                            navigateTo(context,const RegisterScreen());
+                            navigateTo(context, RegisterScreen());
                           }, child:const Text('Register now'))
 
                         ],

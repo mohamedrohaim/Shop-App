@@ -57,9 +57,11 @@ final Widget? startWidget;
   @override
   Widget build(BuildContext context) {
     return  BlocProvider(
-      create: (context)=>ShopCubit()..getCategories()..getHomeData(),
+      create: (context)=>ShopCubit()..getCategories()..getHomeData()..getFavorites()..getUserData(),
       child: BlocConsumer<ShopCubit,ShopStates>(
-        listener: (context, state) {},
+        listener: (context, state)
+        {
+        },
       builder: (context,state){
           return MaterialApp(
             debugShowCheckedModeBanner: false,

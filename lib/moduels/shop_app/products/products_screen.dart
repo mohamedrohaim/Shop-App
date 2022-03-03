@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test1/models/categories_modele.dart';
 import 'package:test1/models/home_model.dart';
 import 'package:test1/moduels/shop_app/cubit/cubit.dart';
+import 'package:test1/shared/component.dart';
 
 import '../../../shared/constant.dart';
 import '../cubit/states.dart';
@@ -15,14 +16,28 @@ class productsScreen extends StatelessWidget{
   @override
   Widget build(BuildContext context)
   {
+    var bannersController=PageController();
 
     return BlocConsumer<ShopCubit,ShopStates>(
-      listener: (context, state) {},
+      listener: (context, state)
+      {
+        if(state is ShopSuccessChangeFavoritesState)
+        {
+          if(state.model.status==false)
+            {
+              showToast(text: state.model.message.toString(), states:ToastStates.ERROR,);
+            }
+          else
+          {
+            showToast(text: state.model.message.toString(),  states:ToastStates.SUCCESS, );
+          }
+        }
+      },
       builder: (context,state){
         
         return ConditionalBuilder(
             condition: ShopCubit.get(context).homeModel!=null && ShopCubit.get(context).categoriesModel!=null,
-            builder:(context)=> productsBuilder(ShopCubit.get(context).homeModel!,ShopCubit.get(context).categoriesModel!) ,
+            builder:(context)=> builderWidget(ShopCubit.get(context).homeModel!,ShopCubit.get(context).categoriesModel!,context) ,
           fallback: (context)=>const Center(child: CircularProgressIndicator()),
 
         );
@@ -31,7 +46,7 @@ class productsScreen extends StatelessWidget{
     ) ;
    
   }
-  Widget productsBuilder(HomeModel model,CategoriesModel categoriesModel)=>SingleChildScrollView(
+  Widget builderWidget(HomeModel model,CategoriesModel categoriesModel,context)=>SingleChildScrollView(
     physics:  const BouncingScrollPhysics(),
     scrollDirection: Axis.vertical,
     child: Column(
@@ -40,6 +55,7 @@ class productsScreen extends StatelessWidget{
          CarouselSlider(items:model.data!.banners.map((e) => Image(
              width: double.infinity,
              fit: BoxFit.cover,
+
              image: NetworkImage('${e.image}')), ).toList() ,
           options: CarouselOptions(
             height: 250,
@@ -52,7 +68,6 @@ class productsScreen extends StatelessWidget{
              autoPlayAnimationDuration: const Duration(seconds: 1),
             autoPlayCurve: Curves.fastOutSlowIn,
             scrollDirection: Axis.horizontal,
-
           ),),
         const SizedBox(height: 10.0),
        Padding(
@@ -97,9 +112,10 @@ class productsScreen extends StatelessWidget{
             physics: const NeverScrollableScrollPhysics(),
             crossAxisCount: 2,
             mainAxisSpacing: 7.0,
+
             crossAxisSpacing: 7.0,
             childAspectRatio: 1/1.50,
-            children:List.generate(model.data!.products.length, (index) => buildGridProdct(model.data!.products[index])) ,
+            children:List.generate(model.data!.products.length, (index) => buildGridProdct(model.data!.products[index],context)) ,
 
           ),
         ),
@@ -129,7 +145,7 @@ class productsScreen extends StatelessWidget{
     ],
   );
 
-  Widget buildGridProdct(ProductModel model)=>Container(
+  Widget buildGridProdct(ProductModel model,context)=>Container(
     color: Colors.white,
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -184,11 +200,20 @@ class productsScreen extends StatelessWidget{
                          ),
                   const Spacer(),
                   IconButton(
-                    padding: const EdgeInsets.only(right: 5.0),
-                      onPressed: (){},
-                      icon: const Icon(
-                        Icons.favorite_border,
-                        size: 19.5,))
+                      onPressed: (){
+                        ShopCubit.get(context).changeFavorites(model.id!);
+                        print(model.id);
+                      },
+
+                      icon:  CircleAvatar(
+                        radius: 14.0,
+                        backgroundColor: ShopCubit.get(context).favorites[model.id]==true ?defaultColor : Colors.grey,
+                        child: const Icon(
+                          Icons.favorite_border,
+                          color: Colors.white,
+
+                          size: 20.5,),
+                      ))
 
                 ],
               ),

@@ -116,19 +116,18 @@ Widget defaultButton({
          begin: Alignment.bottomLeft,
            end: Alignment(0.8, 0.0),
            colors: [
-             Colors.deepPurple,
-             Colors.purple,
+             Colors.blueAccent,
+             Colors.lightBlueAccent,
            ],
            //tileMode: TileMode.repeated
 
        )
       ),
     );
-void showToast({required String text,required ToastStates states})=>Fluttertoast.showToast(
+void showToast({required String text,required ToastStates states ,})=>Fluttertoast.showToast(
     msg: text,
-    toastLength: Toast.LENGTH_LONG,
+    toastLength: Toast.LENGTH_SHORT,
     gravity: ToastGravity.BOTTOM,
-    timeInSecForIosWeb: 5,
     backgroundColor:choseToastColor(states),
     textColor: Colors.black,
     fontSize: 16.0

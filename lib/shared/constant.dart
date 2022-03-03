@@ -5,7 +5,7 @@ import '../moduels/on_boarding_screen/on_boarding.dart';
 import 'component.dart';
 import 'network/local/shared_prefrences.dart';
 
-const defaultColor=Colors.deepPurple;
+const defaultColor=Colors.blue;
 const defaultColor2=Colors.blueAccent;
 
 
@@ -33,5 +33,4 @@ void printFullText(String text) {
   final pattern = RegExp('.{1.800}');
   pattern.allMatches(text).forEach((match) => print(match.group(0)));
 }
-
-dynamic token='token';
+String? token='token';

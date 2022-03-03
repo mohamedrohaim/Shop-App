@@ -22,7 +22,6 @@ class HomeModel
      // late String ad ;
      json['banners'].forEach((element)=>
          banners.add(BannerModel.fromJson((element))));
-
          json['products'].forEach((element)=>
          products.add(ProductModel.fromJson((element))));
 
@@ -49,7 +48,7 @@ class ProductModel
   dynamic discount;
   String? image;
   String? name;
-  bool? isFavorites;
+  bool? inFavorites;
   bool? inCart;
   ProductModel.fromJson(Map<String,dynamic>json)
   {
@@ -59,7 +58,7 @@ class ProductModel
     discount=json['discount'];
     image=json['image'];
     name=json['name'];
-    isFavorites=json['in_favorites'];
+    inFavorites=json['in_favorites'];
     inCart=json['in_cart'];
 
   }

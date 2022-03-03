@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../constant.dart';
-ThemeData darkTheme=  ThemeData(primarySwatch: defaultColor,scaffoldBackgroundColor: Colors.black12,
+ThemeData darkTheme=  ThemeData(primarySwatch:  Colors.blue,scaffoldBackgroundColor: Colors.black12,
     floatingActionButtonTheme:  const FloatingActionButtonThemeData(
         backgroundColor:  defaultColor
     ),
@@ -35,7 +35,7 @@ ThemeData darkTheme=  ThemeData(primarySwatch: defaultColor,scaffoldBackgroundCo
 
 
 ThemeData lightTheme=ThemeData(
-    primarySwatch: defaultColor,
+    primarySwatch: Colors.blue,
     scaffoldBackgroundColor: Colors.white,
     appBarTheme:  const AppBarTheme(
 
@@ -56,7 +56,7 @@ ThemeData lightTheme=ThemeData(
     ), bottomNavigationBarTheme: const BottomNavigationBarThemeData(
   type:  BottomNavigationBarType.fixed,
   selectedItemColor: Colors.blue,
-  unselectedItemColor: Colors.black,
+  unselectedItemColor: Colors.grey,
   elevation: 20.0,
   backgroundColor: Colors.white,
 ),textTheme: const TextTheme(

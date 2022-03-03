@@ -43,4 +43,3 @@ static Future<Response> postData({
 
 }
 }
-//https://student.valuxapps.com/api/
